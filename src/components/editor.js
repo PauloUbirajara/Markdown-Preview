@@ -1,18 +1,9 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 
 import Markdown from './markdown';
 import './editor.css'
 
-// export default function Editor() {
-
-//     // const placeholder = 'Type anything and it will be automatically converted to Markdown!';
-//     // const lastText = localStorage.getItem('last-text');
-//     // const [text, setText] = useState(lastText ? JSON.stringify(lastText) : '');
-
-//     // function handleChange(e) {
-//     //     // localStorage.setItem('last-text', JSON.parse(text));
-//     // }
-// }
+// const fs = require('fs');
 
 export default class Editor extends Component {
 
@@ -35,8 +26,18 @@ export default class Editor extends Component {
         if (this.state.text) localStorage.setItem('last-text', JSON.parse(this.state.text));
     }
 
-    handleFile(e) {
-        console.log(e);
+    async handleFile(e) {
+        e.preventDefault();
+
+        const reader = new FileReader();
+
+        reader.onload = async (e) => {
+            const text = (e.target.result);
+            console.log(text);
+            // alert(text);
+        };
+
+        reader.readAsText(e.target.files[0])
     }
 
     render() {
@@ -53,6 +54,6 @@ export default class Editor extends Component {
                 <Markdown text={this.state.text} />
             </div>
             <input type='file' onChange={this.handleFile} />
-        </>
+        </>;
     }
 }
