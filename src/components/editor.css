@@ -1,0 +1,25 @@
+#editor {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    justify-content: space-between;
+    /* align-items: center; */
+}
+
+#editor * {
+    max-width: 50vw;
+}
+
+textarea {
+    margin: 15px;
+    background: #333333;
+    border: 2px solid #FFFFFF;
+    border-radius: 15px;
+    -webkit-appearance: none;
+    outline: none;
+    color: #fff;
+    padding: 15px;
+}
+
+textarea::placeholder {
+    color: #bbb;
+}

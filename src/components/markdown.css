@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    border: 2px solid #FFFFFF;
+    height: 100vh;
+}
+
+#markdown-text {
+    margin: 15px;
+    border: 2px solid #FFFFFF;
+    outline: none;
+    color: #fff;
+    padding: 15px;
+    max-width: 80vw;
+    border-radius: 15px;
+    box-sizing: border-box;
+}
+
+#markdown-text * {
+    /* text-overflow: ellipsis; */
+    /* overflow: scroll; */
+    overflow-wrap: break-word;
+}
+
+#markdown-text a {
+    color: rgb(130, 180, 255);
+    transition: 250ms color;
+}
+
+#markdown-text a:hover {
+    color: rgb(47, 113, 212);
+}
+
+#markdown-text li {
+    margin-left: 25px;
+}
