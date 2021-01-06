@@ -2,7 +2,6 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     justify-content: space-between;
-    /* align-items: center; */
 }
 
 #editor * {
@@ -32,4 +31,36 @@ textarea {
 
 textarea::placeholder {
     color: #bbb;
+}
+
+#controls {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#controls * {
+    background: #333;
+    padding: 10px 15px;
+    color: #fff;
+    margin: 10px;
+    border-style: none;
+    border-radius: 15px;
+    outline: none;
+}
+
+#controls button {
+    transition: 250ms all;
+    cursor: pointer;
+}
+
+#controls button:hover {
+    background: #fff;
+    color: #222;
+}
+
+#hint {
+    color: #ccc;
+    margin-bottom: 15px;
 }

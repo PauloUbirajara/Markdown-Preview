@@ -4,7 +4,6 @@
 }
 
 body {
-    /* border: 2px solid #FFFFFF; */
     height: 100vh;
 }
 
@@ -38,7 +37,34 @@ body {
     margin-left: 25px;
 }
 
-li+* {
-    list-style: none;
-    text-indent: -2.7em;
+input:disabled {
+    background: red;
+    padding: 25px;
 }
+
+*>ul {
+    list-style: none;
+    /* text-indent: -2.7em; */
+    text-indent: -1em;
+}
+
+/* #copy-html {
+    width: min-content;
+    height: min-content;
+    white-space: nowrap;
+    background: #333;
+    padding: 10px 15px;
+    color: #fff;
+    margin: 10px;
+    border-style: none;
+    border-radius: 15px;
+    outline: none;
+    cursor: pointer;
+    transition: 250ms all;
+    position: fixed;
+}
+
+#copy-html:hover {
+    background: #fff;
+    color: #222;
+} */

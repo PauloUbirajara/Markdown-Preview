@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import Markdown from './markdown';
 import './editor.css'
 
-// const fs = require('fs');
-
 export default class Editor extends Component {
 
     constructor() {
@@ -15,6 +13,7 @@ export default class Editor extends Component {
         };
 
         this.handleFile = this.handleFile.bind(this);
+        this.clearFile = this.clearFile.bind(this);
     }
 
     componentDidMount() {
@@ -42,19 +41,48 @@ export default class Editor extends Component {
 
         reader.onload = async (e) => {
 
-            const text = (e.target.result);
+            try {
+                const text = (e.target.result);
 
-            if (text) {
-                this.setState({ text });
-                // localStorage.setItem('last-text', text);
+                if (text) {
+                    this.setState({ text });
+                }
+            } catch (err) {
+                window.alert("Error during file processing!");
+                console.err("Error during file processing!");
             }
         }
 
         reader.readAsText(e.target.files[0], 'utf8')
     }
 
+    clearFile() {
+        this.setState({
+            text: ''
+        });
+    }
+
+    async getTextAsHTML() {
+        try {
+            const markdownText = document.getElementById('markdown-text');
+
+            await navigator.clipboard.writeText(markdownText.outerHTML);
+
+            window.alert("Text copied to your clipboard!");
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     render() {
         return <>
+            <h1>Markdown Preview</h1>
+            <p id='hint'>You can also submit a file and Markdown Preview will read the content! (Try using only text files or it can cause some performance issues)</p>
+            <div id='controls'>
+                <button id='copy-html' onClick={this.getTextAsHTML}>Copy Markdown as HTML</button>
+                <input type='file' onChange={this.handleFile} id='submit-file' />
+                <button onClick={this.clearFile}>Reset text</button>
+            </div>
             <div id='editor'>
                 <div id='user-textarea'>
                     <textarea
@@ -66,7 +94,6 @@ export default class Editor extends Component {
                 </div>
                 <Markdown text={this.state.text} />
             </div>
-            <input type='file' onChange={this.handleFile} id='submit-file' />
         </>;
     }
 }
