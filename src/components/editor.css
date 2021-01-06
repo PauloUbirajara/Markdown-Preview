@@ -9,6 +9,16 @@
     max-width: 50vw;
 }
 
+#submit-file {
+    color: #ccc;
+}
+
+input #file-upload-button {
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
 textarea {
     margin: 15px;
     background: #333333;

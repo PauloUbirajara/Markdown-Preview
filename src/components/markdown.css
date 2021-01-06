@@ -4,7 +4,7 @@
 }
 
 body {
-    border: 2px solid #FFFFFF;
+    /* border: 2px solid #FFFFFF; */
     height: 100vh;
 }
 
@@ -20,9 +20,9 @@ body {
 }
 
 #markdown-text * {
-    /* text-overflow: ellipsis; */
-    /* overflow: scroll; */
     overflow-wrap: break-word;
+    margin: inherit;
+    padding: 0;
 }
 
 #markdown-text a {
@@ -36,4 +36,9 @@ body {
 
 #markdown-text li {
     margin-left: 25px;
+}
+
+li+* {
+    list-style: none;
+    text-indent: -2.7em;
 }

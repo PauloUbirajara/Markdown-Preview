@@ -7,15 +7,24 @@ import './editor.css'
 
 export default class Editor extends Component {
 
-    placeholder = 'Type anything and it will be automatically converted to Markdown!';
-    state = {
-        text: ''
-    };
+    constructor() {
+        super();
+        this.placeholder = 'Type anything and it will be automatically converted to Markdown!';
+        this.state = {
+            text: ''
+        };
+
+        this.handleFile = this.handleFile.bind(this);
+    }
 
     componentDidMount() {
-        const lastText = localStorage.getItem('last-text');
+        try {
+            const lastText = localStorage.getItem('last-text');
 
-        if (lastText) this.setState({ text: JSON.parse(lastText) });
+            if (lastText) this.setState({ text: JSON.parse(lastText) });
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     componentDidUpdate() {
@@ -32,12 +41,16 @@ export default class Editor extends Component {
         const reader = new FileReader();
 
         reader.onload = async (e) => {
-            const text = (e.target.result);
-            console.log(text);
-            // alert(text);
-        };
 
-        reader.readAsText(e.target.files[0])
+            const text = (e.target.result);
+
+            if (text) {
+                this.setState({ text });
+                // localStorage.setItem('last-text', text);
+            }
+        }
+
+        reader.readAsText(e.target.files[0], 'utf8')
     }
 
     render() {
@@ -53,7 +66,7 @@ export default class Editor extends Component {
                 </div>
                 <Markdown text={this.state.text} />
             </div>
-            <input type='file' onChange={this.handleFile} />
+            <input type='file' onChange={this.handleFile} id='submit-file' />
         </>;
     }
 }
